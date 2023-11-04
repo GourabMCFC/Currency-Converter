@@ -6,15 +6,13 @@ let from = document.querySelector('#from');
 let val = document.querySelector('#val');
 // Method
 const display = (value, answer, to, from, type) => {
-    console.log(value, answer, to, from, type);
     let msg;
-    if (type) msg = `${value} ${to} in ${from} = ${answer.toFixed(2)}`;
+    if (type) msg = `${value} ${to} => ${answer.toFixed(2)} ${from}`;
     else msg = `${value} error`;
     output.innerHTML = msg;
     val.value = '';
 };
 const convert = async (to, from, value) => {
-    console.log('Here');
     let url1 = fetch(
         `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${to}/${from}.min.json`
     );
@@ -39,7 +37,7 @@ btn.addEventListener('click', (event) => {
     event.preventDefault();
     if (val.value == '') return;
     if (to.value === from.value) {
-        output.innerHTML = 'Choose Different Currency Types 🙇';
+        output.innerHTML = 'Choose Different Currency Types';
         return;
     }
     convert(to.value, from.value, Number.parseInt(val.value));
