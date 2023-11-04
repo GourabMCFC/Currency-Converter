@@ -71,7 +71,7 @@ btn.addEventListener('click', (event) => {
         output.innerHTML = 'Choose Different Currency Types';
         return;
     }
-    convert(t, f, Number.parseInt(val.value));
+    convert(t, f, Number(val.value));
 });
 
 collapse.addEventListener('click', () => navbar.classList.toggle('hidden'));
