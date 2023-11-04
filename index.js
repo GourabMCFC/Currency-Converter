@@ -10,6 +10,7 @@ const display = (value, answer, to, from, type) => {
     if (type) msg = `${value} ${to} in ${from} = ${answer}`;
     else msg = `${value} error`;
     output.innerHTML = msg;
+    val.value = '';
 };
 const convert = async (to, from, value) => {
     console.log('Here');
