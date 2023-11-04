@@ -4,7 +4,8 @@
     "description": "",
     "main": "Test.js",
     "scripts": {
-        "start": "vite"
+        "start": "vite",
+        "build": "vite build"
     },
     "keywords": [],
     "author": "",
