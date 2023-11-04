@@ -6,8 +6,9 @@ let from = document.querySelector('#from');
 let val = document.querySelector('#val');
 // Method
 const display = (value, answer, to, from, type) => {
+    console.log(value, answer, to, from, type);
     let msg;
-    if (type) msg = `${value} ${to} in ${from} = ${answer}`;
+    if (type) msg = `${value} ${to} in ${from} = ${answer.toFixed(2)}`;
     else msg = `${value} error`;
     output.innerHTML = msg;
     val.value = '';
@@ -38,13 +39,7 @@ btn.addEventListener('click', (event) => {
     event.preventDefault();
     if (val.value == '') return;
     if (to.value === from.value) {
-        display(
-            Number.parseInt(val.value),
-            Number.parseInt(val.value),
-            to.value,
-            from.value,
-            true
-        );
+        output.innerHTML = 'Choose Different Currency Types 🙇';
         return;
     }
     convert(to.value, from.value, Number.parseInt(val.value));
