@@ -6,6 +6,30 @@ let from = document.querySelector('#from');
 let val = document.querySelector('#val');
 let collapse = document.querySelector('#collapse');
 let navbar = document.querySelector('#navbar-default');
+// Populate
+let populate = fetch(
+    `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json`
+);
+populate
+    .then((val) => val.json())
+    .then((val) => {
+        Object.entries(val).forEach((element) => {
+            if (element[0].length > 0 && element[1].length > 0) {
+                let option1 = document.createElement('option');
+                option1.value = element[0];
+                let option2 = document.createElement('option');
+                option2.value = element[0];
+                option1.appendChild(
+                    document.createTextNode(element[1] + ', ' + element[0])
+                );
+                option2.appendChild(
+                    document.createTextNode(element[1] + ', ' + element[0])
+                );
+                from.appendChild(option1);
+                to.appendChild(option2);
+            }
+        });
+    });
 // Method
 const display = (value, answer, to, from, type) => {
     let msg;
@@ -38,11 +62,13 @@ const convert = async (to, from, value) => {
 btn.addEventListener('click', (event) => {
     event.preventDefault();
     if (val.value == '') return;
-    if (to.value === from.value) {
+    let [t, f] = [to.value, from.value];
+    console.log(t, f);
+    if (t === f) {
         output.innerHTML = 'Choose Different Currency Types';
         return;
     }
-    convert(to.value, from.value, Number.parseInt(val.value));
+    convert(t, f, Number.parseInt(val.value));
 });
 
 collapse.addEventListener('click', () => navbar.classList.toggle('hidden'));
