@@ -33,7 +33,7 @@ populate
 // Method
 const display = (value, answer, to, from, type) => {
     let msg;
-    if (type) msg = `${value} ${to} => ${answer.toFixed(2)} ${from}`;
+    if (type) msg = `${value} (${to}) => ${answer.toFixed(2)} (${from})`;
     else msg = `${value} error`;
     output.innerHTML = msg;
     val.value = '';
