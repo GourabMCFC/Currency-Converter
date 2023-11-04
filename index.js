@@ -4,6 +4,8 @@ let output = document.querySelector('#output');
 let to = document.querySelector('#to');
 let from = document.querySelector('#from');
 let val = document.querySelector('#val');
+let collapse = document.querySelector('#collapse');
+let navbar = document.querySelector('#navbar-default');
 // Method
 const display = (value, answer, to, from, type) => {
     let msg;
@@ -42,3 +44,5 @@ btn.addEventListener('click', (event) => {
     }
     convert(to.value, from.value, Number.parseInt(val.value));
 });
+
+collapse.addEventListener('click', () => navbar.classList.toggle('hidden'));
