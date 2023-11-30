@@ -6,6 +6,30 @@ let from = document.querySelector('#from');
 let val = document.querySelector('#val');
 let collapse = document.querySelector('#collapse');
 let navbar = document.querySelector('#navbar-default');
+const currencies = new Set([
+    'usd',
+    'aed',
+    'afn',
+    'ars',
+    'aud',
+    'bdt',
+    'cnh',
+    'cny',
+    'egp',
+    'gbp',
+    'sgd',
+    'thb',
+    'idr',
+    'iep',
+    'inr',
+    'lkr',
+    'myr',
+    'qar',
+    'cad',
+    'eur',
+    'jpy',
+    'krw',
+]);
 // Populate
 let populate = fetch(
     `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json`
@@ -14,7 +38,8 @@ populate
     .then((val) => val.json())
     .then((val) => {
         Object.entries(val).forEach((element) => {
-            if (element[0].length > 0 && element[1].length > 0) {
+            if (currencies.has(element[0])) {
+                console.log(element);
                 let option1 = document.createElement('option');
                 option1.value = element[0];
                 let option2 = document.createElement('option');
