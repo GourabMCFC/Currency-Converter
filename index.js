@@ -4,8 +4,6 @@ let output = document.querySelector('#output');
 let to = document.querySelector('#to');
 let from = document.querySelector('#from');
 let val = document.querySelector('#val');
-let collapse = document.querySelector('#collapse');
-let navbar = document.querySelector('#navbar-default');
 const currencies = new Set([
     'usd',
     'aed',
@@ -13,16 +11,13 @@ const currencies = new Set([
     'ars',
     'aud',
     'bdt',
-    'cnh',
     'cny',
     'egp',
     'gbp',
     'sgd',
     'thb',
     'idr',
-    'iep',
     'inr',
-    'lkr',
     'myr',
     'qar',
     'cad',
@@ -39,7 +34,6 @@ populate
     .then((val) => {
         Object.entries(val).forEach((element) => {
             if (currencies.has(element[0])) {
-                console.log(element);
                 let option1 = document.createElement('option');
                 option1.value = element[0];
                 let option2 = document.createElement('option');
@@ -91,12 +85,9 @@ btn.addEventListener('click', (event) => {
     event.preventDefault();
     if (val.value == '') return;
     let [t, f] = [to.value, from.value];
-    console.log(t, f);
     if (t === f) {
         output.innerHTML = 'Choose Different Currency Types';
         return;
     }
     convert(t, f, Number(val.value));
 });
-
-collapse.addEventListener('click', () => navbar.classList.toggle('hidden'));

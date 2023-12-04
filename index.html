@@ -6,6 +6,18 @@
         <title>Currency Converter - 💵</title>
         <link rel="stylesheet" href="style.css" />
         <link rel="shortcut icon" href="dollar-coin.ico" type="image/x-icon" />
+        <script>
+            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+            if (
+                localStorage.getItem('color-theme') === 'dark' ||
+                (!('color-theme' in localStorage) &&
+                    window.matchMedia('(prefers-color-scheme: dark)').matches)
+            ) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
     </head>
     <body class="bg-white border-gray-200 dark:bg-gray-900 uppercase font-Abel">
         <header>
@@ -54,7 +66,7 @@
                         id="navbar-default"
                     >
                         <ul
-                            class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+                            class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-slate-100 md:flex-row gap-y-4 md:gap-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
                         >
                             <li>
                                 <a
@@ -62,6 +74,25 @@
                                     class="block text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg md:text-xl"
                                     >About</a
                                 >
+                            </li>
+                            <li>
+                                <label
+                                    class="relative inline-flex items-center me-5 cursor-pointer mt-0.5"
+                                >
+                                    <input
+                                        type="checkbox"
+                                        value=""
+                                        class="sr-only peer"
+                                        id="theme-toggle"
+                                    />
+                                    <div
+                                        class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-500"
+                                    ></div>
+                                    <span
+                                        id="theme-toggle-text"
+                                        class="ms-3 font-medium text-gray-900 dark:text-gray-300"
+                                    ></span>
+                                </label>
                             </li>
                         </ul>
                     </div>
@@ -117,11 +148,12 @@
                 </button>
             </form>
             <div
-                class="flex text-2xl lg:text-4xl items-center justify-center mt-2 p-2 text-black dark:text-white"
+                class="flex text-3xl lg:text-4xl items-center justify-center mt-4 p-2 text-black dark:text-white"
             >
                 <h1 id="output">Enter Amount And Select Currency Type</h1>
             </div>
         </section>
         <script src="index.js"></script>
+        <script src="navbar.js"></script>
     </body>
 </html>
