@@ -27,7 +27,7 @@ const currencies = new Set([
 ]);
 // Populate
 let populate = fetch(
-    `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json`
+    `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json`
 );
 populate
     .then((val) => val.json())
@@ -62,23 +62,23 @@ const display = (value, answer, to, from, type) => {
 };
 const convert = async (to, from, value) => {
     let url1 = fetch(
-        `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${to}/${from}.min.json`
+        `https://latest.currency-api.pages.dev/v1/currencies/${from}.json`
     );
     let url2 = fetch(
-        `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${to}/${from}.json`
+        `https://latest.currency-api.pages.dev/v1/currencies/${from}.min.json`
     );
     let url3 = fetch(
-        `https://raw.githubusercontent.com/fawazahmed0/currency-api/1/latest/currencies/${to}/${from}.min.json`
+        `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${from}.json`
     );
     let url4 = fetch(
-        `https://raw.githubusercontent.com/fawazahmed0/currency-api/1/latest/currencies/${to}/${from}.json`
+        `https://latest.currency-api.pages.dev/v1/currencies/${from}.json`
     );
-    let resp = await Promise.any([url1, url2, url3, url4]).then((val) => {
+    let resp = await Promise.any([url1]).then((val) => {
         if (val.ok) return val.json();
         display(val.status, false, false, false, val.ok);
         return val.ok;
     });
-    if (resp) display(value, value * resp[from], to, from, true);
+    if (resp) display(value, value * resp[from][to], to, from, true);
 };
 
 btn.addEventListener('click', (event) => {
