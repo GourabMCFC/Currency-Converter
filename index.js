@@ -62,23 +62,23 @@ const display = (value, answer, to, from, type) => {
 };
 const convert = async (to, from, value) => {
     let url1 = fetch(
-        `https://latest.currency-api.pages.dev/v1/currencies/${from}.json`
+        `https://latest.currency-api.pages.dev/v1/currencies/${to}.json`
     );
     let url2 = fetch(
-        `https://latest.currency-api.pages.dev/v1/currencies/${from}.min.json`
+        `https://latest.currency-api.pages.dev/v1/currencies/${to}.min.json`
     );
     let url3 = fetch(
-        `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${from}.json`
+        `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${to}.json`
     );
     let url4 = fetch(
-        `https://latest.currency-api.pages.dev/v1/currencies/${from}.json`
+        `https://latest.currency-api.pages.dev/v1/currencies/${to}.json`
     );
     let resp = await Promise.any([url1]).then((val) => {
         if (val.ok) return val.json();
         display(val.status, false, false, false, val.ok);
         return val.ok;
     });
-    if (resp) display(value, value * resp[from][to], to, from, true);
+    if (resp) display(value, value * resp[to][from], to, from, true);
 };
 
 btn.addEventListener('click', (event) => {
